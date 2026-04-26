@@ -65,74 +65,65 @@
         .btn-zalo { background-color: #25d366; }
         .btn-messenger { background-color: #006bff; }
         .btn-phone { background-color: #004b87; }
-        /* --- GIAO DIỆN CHO ĐIỆN THOẠI --- */
-@media (max-width: 768px) {
-    /* 1. Xếp hình ảnh và chữ chồng lên nhau theo chiều dọc */
-    .hero-container {
-        flex-direction: column !important;
-        text-align: center; /* Căn giữa chữ cho đẹp */
-    }
-    
-    /* 2. Đẩy hình ảnh lên trên chữ */
-    .hero-image {
-        margin-bottom: 20px;
-        order: -1; /* Lệnh này bắt buộc ảnh phải nhảy lên vị trí số 1 */
-    }
-    
-    /* 3. Sắp xếp lại thanh Menu cho đỡ chen chúc */
-    nav {
-        flex-direction: column !important;
-        padding: 10px;
-    }
-    .nav-links {
-        flex-wrap: nowrap !important; /* Lệnh ép không được xuống dòng */
-        justify-content: center;
-        gap: 8px !important; /* Thu hẹp khoảng cách giữa các chữ */
-        margin-top: 15px;
-        overflow-x: auto; /* Cho phép vuốt ngang nếu màn hình điện thoại quá nhỏ */
-    }
-    
-    .nav-links a {
-        font-size: 13px; /* Thu nhỏ cỡ chữ lại một chút để vừa 1 hàng */
-        white-space: nowrap; /* Bắt buộc từng cụm từ (vd: Kho Bài Giảng) không bị gãy làm đôi */
-    }
-    /* --- ĐỊNH DẠNG THANH MENU MÁY TÍNH (Bản tinh tế, thanh thoát) --- */
-    @media (min-width: 769px) {
-        nav {
-            display: flex !important;
-            justify-content: space-between !important;
-            align-items: center !important;
-            padding: 12px 8% !important; /* Lề trên/dưới mỏng lại, lề hai bên co giãn theo % */
-            background-color: #f8faff; 
-        }
+/* --- GIAO DIỆN CHO ĐIỆN THOẠI --- */
+        @media (max-width: 768px) {
+            .hero-container {
+                flex-direction: column !important;
+                text-align: center;
+            }
+            .hero-image {
+                margin-bottom: 20px;
+                order: -1;
+            }
+            nav {
+                flex-direction: column !important;
+                padding: 10px;
+            }
+            .nav-links {
+                flex-wrap: nowrap !important;
+                justify-content: center;
+                gap: 8px !important;
+                margin-top: 15px;
+                overflow-x: auto;
+            }
+            .nav-links a {
+                font-size: 13px;
+                white-space: nowrap;
+            }
+        } /* <-- Dấu ngoặc này đã được đặt đúng chỗ để đóng lại phần điện thoại */
 
-        .nav-brand {
-            font-size: 1.2rem !important; /* Chữ tên cô giáo vừa phải */
-            white-space: nowrap !important;
+        /* --- ĐỊNH DẠNG THANH MENU MÁY TÍNH (Bản tinh tế, thanh thoát) --- */
+        @media (min-width: 769px) {
+            nav {
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                padding: 12px 8% !important;
+                background-color: #f8faff; 
+            }
+            .nav-brand {
+                font-size: 1.2rem !important;
+                white-space: nowrap !important;
+            }
+            .nav-links {
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: flex-end !important;
+                gap: 30px !important;
+                align-items: center !important;
+                margin: 0 !important;
+            }
+            .nav-links a {
+                white-space: nowrap !important;
+                font-size: 15px !important;
+                font-weight: 500 !important;
+                color: #334155 !important;
+                transition: color 0.2s ease !important;
+            }
+            .nav-links a:hover {
+                color: #0056b3 !important;
+            }
         }
-
-        .nav-links {
-            display: flex !important;
-            flex-direction: row !important;
-            justify-content: flex-end !important;
-            gap: 30px !important; /* Khoảng cách các nút thu gọn lại cho tinh tế */
-            align-items: center !important;
-            margin: 0 !important;
-        }
-
-        .nav-links a {
-            white-space: nowrap !important;
-            font-size: 15px !important; /* Chữ nhỏ lại một chút */
-            font-weight: 500 !important; /* Nét chữ thanh hơn */
-            color: #334155 !important; /* Màu xám xanh sang trọng */
-            transition: color 0.2s ease !important; /* Hiệu ứng mượt khi di chuột */
-        }
-        
-        .nav-links a:hover {
-            color: #0056b3 !important; /* Đổi màu xanh lam đậm khi trỏ chuột vào */
-        }
-    }
-}
     </style>
 </head>
 <body>
@@ -225,65 +216,31 @@
         <a href="tel:" class="contact-btn btn-phone" title="Gọi điện"><i class="fas fa-phone-alt"></i></a>
     </div>
 
-</body>
-<script>
+    <script>
         const navbar = document.querySelector('nav');
         let lastScrollTop = 0;
 
-        // 1. Phủ màu nền và cố định thanh menu
         navbar.style.position = 'fixed';
         navbar.style.top = '0';
         navbar.style.left = '0';
         navbar.style.width = '100%';
         navbar.style.zIndex = '9999';
-        navbar.style.backgroundColor = '#f4f9ff'; // Màu xanh nhạt tệp với nền web
-        navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)'; // Đổ bóng cho đẹp
-        navbar.style.transition = 'top 0.3s ease-in-out'; // Hiệu ứng trượt mượt mà
-
-        // 2. Đẩy nội dung web xuống một chút để không bị menu đè lên
-        document.body.style.paddingTop = '80px'; 
-
-        // 3. Cảm biến nhận diện thao tác vuốt màn hình
-        window.addEventListener('scroll', function() {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > lastScrollTop) {
-                // Vuốt lên (Kéo đọc tiếp xuống dưới) -> Ẩn menu đi
-                navbar.style.top = '-100px'; 
-            } else {
-                // Vuốt xuống (Kéo ngược lên trên) -> Hiện menu ra
-                navbar.style.top = '0';
-            }
-            lastScrollTop = scrollTop;
-        });
-    </script><script>
-        const navbar = document.querySelector('nav');
-        let lastScrollTop = 0;
-
-        // 1. Phủ màu nền và cố định thanh menu
-        navbar.style.position = 'fixed';
-        navbar.style.top = '0';
-        navbar.style.left = '0';
-        navbar.style.width = '100%';
-        navbar.style.zIndex = '9999';
-        navbar.style.backgroundColor = '#f4f9ff'; 
-        navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)'; 
+        navbar.style.backgroundColor = '#f8faff'; 
+        navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)'; 
         navbar.style.transition = 'top 0.3s ease-in-out'; 
 
-        // 2. Đẩy nội dung web xuống một chút để không bị đè
         document.body.style.paddingTop = '80px'; 
 
-        // 3. Cảm biến nhận diện thao tác vuốt
         window.addEventListener('scroll', function() {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             
-            // ĐIỀU KIỆN MỚI: Chỉ ẩn khi vuốt xuống VÀ đã cách đỉnh trang lớn hơn 50px
             if (scrollTop > lastScrollTop && scrollTop > 50) {
                 navbar.style.top = '-100px'; 
             } else {
-                // Vuốt lên HOẶC đang ở sát đỉnh trang -> Luôn luôn hiện
                 navbar.style.top = '0';
             }
             lastScrollTop = scrollTop;
         });
     </script>
+</body>
 </html>
