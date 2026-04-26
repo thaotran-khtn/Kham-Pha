@@ -219,5 +219,35 @@
             }
             lastScrollTop = scrollTop;
         });
+    </script><script>
+        const navbar = document.querySelector('nav');
+        let lastScrollTop = 0;
+
+        // 1. Phủ màu nền và cố định thanh menu
+        navbar.style.position = 'fixed';
+        navbar.style.top = '0';
+        navbar.style.left = '0';
+        navbar.style.width = '100%';
+        navbar.style.zIndex = '9999';
+        navbar.style.backgroundColor = '#f4f9ff'; 
+        navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)'; 
+        navbar.style.transition = 'top 0.3s ease-in-out'; 
+
+        // 2. Đẩy nội dung web xuống một chút để không bị đè
+        document.body.style.paddingTop = '80px'; 
+
+        // 3. Cảm biến nhận diện thao tác vuốt
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // ĐIỀU KIỆN MỚI: Chỉ ẩn khi vuốt xuống VÀ đã cách đỉnh trang lớn hơn 50px
+            if (scrollTop > lastScrollTop && scrollTop > 50) {
+                navbar.style.top = '-100px'; 
+            } else {
+                // Vuốt lên HOẶC đang ở sát đỉnh trang -> Luôn luôn hiện
+                navbar.style.top = '0';
+            }
+            lastScrollTop = scrollTop;
+        });
     </script>
 </html>
