@@ -96,6 +96,42 @@
         font-size: 13px; /* Thu nhỏ cỡ chữ lại một chút để vừa 1 hàng */
         white-space: nowrap; /* Bắt buộc từng cụm từ (vd: Kho Bài Giảng) không bị gãy làm đôi */
     }
+    /* --- ĐỊNH DẠNG THANH MENU MÁY TÍNH (Bản tinh tế, thanh thoát) --- */
+    @media (min-width: 769px) {
+        nav {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            padding: 12px 8% !important; /* Lề trên/dưới mỏng lại, lề hai bên co giãn theo % */
+            background-color: #f8faff; 
+        }
+
+        .nav-brand {
+            font-size: 1.2rem !important; /* Chữ tên cô giáo vừa phải */
+            white-space: nowrap !important;
+        }
+
+        .nav-links {
+            display: flex !important;
+            flex-direction: row !important;
+            justify-content: flex-end !important;
+            gap: 30px !important; /* Khoảng cách các nút thu gọn lại cho tinh tế */
+            align-items: center !important;
+            margin: 0 !important;
+        }
+
+        .nav-links a {
+            white-space: nowrap !important;
+            font-size: 15px !important; /* Chữ nhỏ lại một chút */
+            font-weight: 500 !important; /* Nét chữ thanh hơn */
+            color: #334155 !important; /* Màu xám xanh sang trọng */
+            transition: color 0.2s ease !important; /* Hiệu ứng mượt khi di chuột */
+        }
+        
+        .nav-links a:hover {
+            color: #0056b3 !important; /* Đổi màu xanh lam đậm khi trỏ chuột vào */
+        }
+    }
 }
     </style>
 </head>
