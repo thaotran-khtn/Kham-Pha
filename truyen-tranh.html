@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Góc Truyện Tranh | Không Gian KHTN 8</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; background-color: #f8fafc; color: #334155; }
+
+        /* Thanh điều hướng */
+        nav { background-color: #ffffff; display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .nav-brand { font-size: 1.4rem; font-weight: 700; color: #1e3a8a; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .nav-links { display: flex; gap: 25px; }
+        .nav-links a { text-decoration: none; color: #475569; font-weight: 600; font-size: 1rem; transition: color 0.2s ease, border-bottom 0.2s ease; padding-bottom: 5px; border-bottom: 2px solid transparent; }
+        .nav-links a:hover, .nav-links a.active { color: #2563eb; border-bottom: 2px solid #2563eb; }
+
+        /* Header trang Truyện Tranh */
+        .page-header { background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%); color: #ffffff; padding: 4rem 5%; text-align: center; }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .page-header p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+
+        /* Khu vực hiển thị truyện */
+        .comic-section { padding: 4rem 5%; background-color: #f8fafc; min-height: 50vh; text-align: center; }
+        .comic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto; }
+        .comic-card { background: #ffffff; padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; transition: transform 0.3s; }
+        .comic-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .comic-card img { width: 100%; border-radius: 6px; margin-bottom: 1rem; }
+        .comic-card h3 { color: #0f172a; margin-bottom: 0.5rem; }
+        .comic-card p { color: #64748b; font-size: 0.95rem; margin-bottom: 1.5rem; }
+        .btn-read { display: inline-block; background-color: #2563eb; color: #fff; padding: 8px 20px; border-radius: 20px; text-decoration: none; font-weight: 600; transition: background 0.3s; }
+        .btn-read:hover { background-color: #1d4ed8; }
+
+        /* Footer & Nút liên hệ */
+        footer { background-color: #0f172a; color: #cbd5e1; padding: 3rem 5% 1.5rem 5%; margin-top: 4rem; font-size: 0.95rem; text-align: left; }
+        .footer-content { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; }
+        .footer-section { flex: 1; min-width: 250px; }
+        .footer-section h3 { color: #60a5fa; margin-bottom: 1.2rem; font-size: 1.2rem; border-bottom: 1px solid #334155; padding-bottom: 0.5rem; display: inline-block; }
+        .footer-section p, .footer-section ul li { margin-bottom: 0.8rem; line-height: 1.6; }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li a { color: #cbd5e1; text-decoration: none; transition: color 0.2s; }
+        .footer-section ul li a:hover { color: #60a5fa; }
+        .footer-bottom { text-align: center; padding-top: 1.5rem; margin-top: 2rem; border-top: 1px solid #1e293b; font-size: 0.85rem; color: #64748b; }
+        
+        .floating-contact { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 9999; }
+        .contact-btn { width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #ffffff; font-size: 24px; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.3s; }
+        .contact-btn:hover { transform: scale(1.15); }
+        .btn-zalo { background-color: #25d366; } .btn-messenger { background-color: #006bff; } .btn-phone { background-color: #004b87; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="nav-brand">KHTN 8 <span style="font-weight: 400; font-size: 1.1rem;">| Cô Trần Thị Thảo</span></a>
+        <div class="nav-links">
+            <a href="index.html">Trang Chủ</a>
+            <a href="index.html#tin-tuc">Tin Nổi Bật</a>
+            <a href="bai-giang.html">Kho Bài Giảng</a>
+            <a href="truyen-tranh.html">Góc Truyện Tranh</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>Góc Truyện Tranh Vật Lí</h1>
+        <p>Học Vật lý 8 qua các tình huống hài hước và hình ảnh trực quan của Doraemon và những người bạn.</p>
+    </header>
+
+    <section class="comic-section">
+        <div class="comic-grid">
+            <div class="comic-card">
+                <img src="https://images.unsplash.com/photo-1608670878149-ad585971a8af?auto=format&fit=crop&w=400&q=80" alt="Đòn bẩy loại 1">
+                <h3>Tập 1: Bí ẩn Đòn Bẩy Loại 1</h3>
+                <p>Nobita dùng đòn bẩy để nâng tảng đá lớn. Điểm tựa nằm ở đâu?</p>
+                <a href="#" class="btn-read">Đọc ngay</a>
+            </div>
+            <div class="comic-card">
+                <img src="https://images.unsplash.com/photo-1549429188-692518e38d7b?auto=format&fit=crop&w=400&q=80" alt="Đòn bẩy loại 2">
+                <h3>Tập 2: Xe cút kít của Chaien</h3>
+                <p>Phân tích đòn bẩy loại 2 thông qua chiếc xe rùa chở hàng của Chaien.</p>
+                <a href="#" class="btn-read">Đọc ngay</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Thông tin phụ trách</h3>
+                <p><strong>Giáo viên:</strong> Trần Thị Thảo</p>
+                <p><strong>Đơn vị:</strong> Trường THCS Long Hậu</p>
+            </div>
+            <div class="footer-section">
+                <h3>Về dự án</h3>
+                <p>Sản phẩm thuộc SKKN: <em>"Ứng dụng AI trong thiết kế và sử dụng học liệu số môn KHTN 8..."</em></p>
+            </div>
+            <div class="footer-section">
+                <h3>Liên kết nhanh</h3>
+                <ul>
+                    <li><a href="index.html">Trang Chủ</a></li>
+                    <li><a href="bai-giang.html">Kho Bài Giảng Số</a></li>
+                    <li><a href="truyen-tranh.html">Góc Truyện Tranh</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 | Hệ thống học liệu số KHTN 8 - Cô Trần Thị Thảo.</p>
+        </div>
+    </footer>
+
+    <div class="floating-contact">
+        <a href="https://zalo.me/" target="_blank" class="contact-btn btn-zalo" title="Zalo"><i class="fas fa-comment-dots"></i></a>
+        <a href="https://m.me/" target="_blank" class="contact-btn btn-messenger" title="Messenger"><i class="fab fa-facebook-messenger"></i></a>
+        <a href="tel:" class="contact-btn btn-phone" title="Gọi điện"><i class="fas fa-phone-alt"></i></a>
+    </div>
+
+</body>
+</html>

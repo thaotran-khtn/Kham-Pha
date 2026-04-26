@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Không Gian KHTN 8 | Khám Phá & Sáng Tạo</title>
+    <style>
+        /* 1. CSS Reset & Cơ bản */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth; /* Cuộn mượt */
+            scroll-padding-top: 90px; /* Chống lẹm nội dung khi cuộn */
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f8fafc;
+            color: #334155;
+        }
+
+        /* 2. Thanh điều hướng (Cố định) */
+        nav {
+            background-color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-brand {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #475569;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.2s ease, border-bottom 0.2s ease;
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-links a:hover {
+            color: #2563eb;
+            border-bottom: 2px solid #2563eb;
+        }
+
+        /* 3. Phần Tiêu đề chính (Hero Section) */
+        .hero-section {
+            background: linear-gradient(135deg, #e0eaf5 0%, #f0f4f8 100%);
+            padding: 3rem 5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-container {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            max-width: 1000px;
+            width: 100%;
+        }
+        .hero-image {
+            flex-shrink: 0;
+        }
+        .hero-image img {
+            width: 260px;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.15);
+            border: 6px solid #ffffff;
+        }
+        .hero-content {
+            flex: 1;
+        }
+        .hero-content h1 {
+            font-size: 2.2rem;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+        .hero-content h2 {
+            font-size: 1.2rem;
+            color: #3b82f6;
+            margin-bottom: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .hero-content p {
+            font-size: 1.05rem;
+            color: #475569;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        .intro-highlight {
+            font-weight: 600;
+            color: #1e40af;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #2563eb;
+            color: #ffffff;
+            padding: 10px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            margin-top: 10px;
+            transition: background-color 0.2s, transform 0.1s;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+        }
+        .btn:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        /* 4. BẢNG TIN NỔI BẬT (NHỎ GỌN & TINH TẾ) */
+        .news-section {
+            padding: 3rem 5%;
+            background-color: #f8fafc;
+        }
+        .news-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .news-header h2 {
+            color: #1e3a8a;
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #3b82f6;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        .news-header p {
+            color: #64748b;
+            font-size: 0.95rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+        .news-card {
+            background: #ffffff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .news-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(37, 99, 235, 0.08);
+        }
+        .news-image {
+            width: 100%;
+            height: 150px;
+            overflow: hidden;
+        }
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .news-card:hover .news-image img {
+            transform: scale(1.03);
+        }
+        .news-content {
+            padding: 1.2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .news-tag {
+            background-color: #f0fdf4;
+            color: #166534;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 0.6rem;
+            align-self: flex-start;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .news-date {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-bottom: 0.5rem;
+        }
+        .news-content h3 {
+            font-size: 1.05rem;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+        .news-content p {
+            color: #475569;
+            font-size: 0.9rem;
+            margin-bottom: 1.2rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .news-btn {
+            color: #2563eb;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: auto;
+            transition: color 0.2s;
+        }
+        .news-btn:hover {
+            color: #1e3a8a;
+        }
+
+        /* 5. Chân trang (Footer) */
+        footer {
+            background-color: #0f172a;
+            color: #cbd5e1;
+            padding: 3rem 5% 1.5rem 5%;
+            margin-top: 2rem;
+            font-size: 0.95rem;
+        }
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .footer-section {
+            flex: 1;
+            min-width: 280px;
+        }
+        .footer-section h3 {
+            color: #60a5fa;
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        .footer-section p {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+        .footer-section ul {
+            list-style: none;
+        }
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+        .footer-section ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-section ul li a:hover {
+            color: #60a5fa;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            margin-top: 2rem;
+            border-top: 1px solid #1e293b;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        /* Lớp tạo hiệu ứng trượt mượt mà (Dành cho JavaScript) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* --- CỤM NÚT LIÊN HỆ NỔI (FLOATING CONTACT) --- */
+        .floating-contact {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Khoảng cách giữa các nút */
+            z-index: 9999; /* Đảm bảo luôn nổi trên cùng */
+        }
+        .contact-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            font-size: 24px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
+        }
+        .contact-btn:hover {
+            transform: scale(1.15); /* Phóng to nảy lên khi trỏ chuột */
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+            color: #ffffff;
+        }
+        
+        /* Màu sắc chuẩn theo hình ảnh cô cung cấp */
+        .btn-zalo {
+            background-color: #006bff; /* Màu xanh lá (Zalo/WhatsApp) */
+        }
+        .btn-messenger {
+            background-color: #006bff; /* Màu xanh dương sáng (Messenger) */
+        }
+        .btn-phone {
+            background-color: #25d366; /* Màu xanh dương đậm (Gọi điện) */
+        }
+
+        /* Ẩn bớt trên màn hình điện thoại nếu cần thiết để đỡ vướng */
+        @media (max-width: 768px) {
+            .contact-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+            .floating-contact {
+                bottom: 20px;
+                right: 20px;
+                gap: 10px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="nav-brand">KHTN 8 <span style="font-weight: 400; font-size: 1.1rem;">| Cô Trần Thị Thảo</span></a>
+      <div class="nav-links">
+         <a href="index.html">Trang Chủ</a>
+         <a href="index.html#tin-tuc">Tin Nổi Bật</a>
+         <a href="bai-giang.html" class="active">Kho Bài Giảng</a>
+         <a href="truyen-tranh.html" class="active">Góc Truyện Tranh</a>
+      </div>
+    </nav>
+
+    <header class="hero-section" id="trang-chu">
+        <div class="hero-container">
+            <div class="hero-image">
+                <img src="d:\Em iuuu\Dự án trang web cá nhân\avatar.jpg.JPEG" alt="Cô Trần Thị Thảo">
+            </div>
+            <div class="hero-content">
+                <h1>XIN CHÀO CÁC ANH CHỊ VÀ CÁC BẠN</h1>
+                <h2>Chào mừng các bạn đến với Không gian Khám phá Khoa học!</h2>
+                <p>
+                    Cô mong muốn biến những kiến thức Vật lý tưởng chừng khô khan thành những trải nghiệm học tập sáng tạo và đầy niềm vui.
+                </p>
+                <p>
+                    Tại website này các bạn có thể tìm thấy tất cả những thông tin liên quan về những kiến thức và tải về những nội dung miễn phí mà cô đang chia sẻ.
+                </p>
+                <a href="#tin-tuc" class="btn">Xem tin tức mới nhất</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="news-section" id="tin-tuc">
+        <div class="news-header reveal">
+            <h2>Tin Nổi Bật Của Cô</h2>
+            <p>Cập nhật những hoạt động học tập, dự án sáng tạo và thông báo mới nhất từ lớp học.</p>
+        </div>
+
+        <div class="news-grid">
+            <article class="news-card reveal">
+                <div class="news-image">
+                    <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=400&q=80" alt="Truyện tranh đòn bẩy">
+                </div>
+                <div class="news-content">
+                    <span class="news-tag">Dự án mới</span>
+                    <h3>Ra mắt truyện tranh Doraemon: Khám phá Đòn bẩy</h3>
+                    <p class="news-date">Tháng 4, 2026</p>
+                    <p>Bộ truyện 10 khung hình giúp các em phân biệt rõ 3 loại đòn bẩy qua các tình huống hài hước.</p>
+                    <a href="#" class="news-btn">Xem chi tiết &rarr;</a>
+                </div>
+            </article>
+
+            <article class="news-card reveal">
+                <div class="news-image">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=400&q=80" alt="Học sinh">
+                </div>
+                <div class="news-content">
+                    <span class="news-tag">Hoạt động lớp</span>
+                    <h3>Tuyên dương tập thể 8A3 với Sổ tay Khoa học Số</h3>
+                    <p class="news-date">Tháng 4, 2026</p>
+                    <p>46 em học sinh lớp 8A3 đã hoàn thành xuất sắc việc ứng dụng AI để thiết kế Infographic sáng tạo.</p>
+                    <a href="#" class="news-btn">Xem chi tiết &rarr;</a>
+                </div>
+            </article>
+
+            <article class="news-card reveal">
+                <div class="news-image">
+                    <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=400&q=80" alt="Sáng kiến kinh nghiệm">
+                </div>
+                <div class="news-content">
+                    <span class="news-tag">Chuyên môn</span>
+                    <h3>Triển khai SKKN Ứng dụng AI trong giảng dạy Vật lí</h3>
+                    <p class="news-date">Tháng 4, 2026</p>
+                    <p>Sáng kiến đồng kiến tạo học liệu số chính thức được áp dụng, hứa hẹn mang lại những tiết học trực quan nhất.</p>
+                    <a href="#" class="news-btn">Xem chi tiết &rarr;</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Thông tin phụ trách</h3>
+                <p><strong>Giáo viên:</strong> Trần Thị Thảo</p>
+                <p><strong>Chuyên môn:</strong> Cử nhân Sư phạm Vật lí</p>
+                <p><strong>Đơn vị công tác:</strong> Trường THCS Long Hậu</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Về dự án</h3>
+                <p>Sản phẩm thuộc sáng kiến: <em>"Ứng dụng AI trong thiết kế và sử dụng học liệu số môn KHTN 8 (phân môn Vật lí) thông qua hoạt động đồng kiến tạo..."</em></p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Liên kết nhanh</h3>
+                <ul>
+                    <li><a href="index.html">Về trang chủ</a></li>
+                    <li><a href="tin-tuc.html">Tin Nổi Bật</a></li>
+                    <li><a href="bai-giang.html">Kho Bài Giảng Số</a></li>
+                    <li><a href="truyen-tranh.html">Góc Truyện Tranh KHTN</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 | Hệ thống học liệu số KHTN 8 - Thiết kế phục vụ đổi mới phương pháp giảng dạy.</p>
+        </div>
+    </footer>
+
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 50; 
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Chạy ngay khi tải trang
+    </script>
+    <div class="floating-contact">
+        <a href="https://zalo.me/" target="_blank" class="contact-btn btn-zalo" title="Zalo">
+         <span style="font-weight: bold; font-size: 15px; font-family: sans-serif;">Zalo</span>
+        </a>
+        
+        <a href="https://m.me/LINK_MESSENGER_CỦA_CÔ" target="_blank" class="contact-btn btn-messenger" title="Nhắn tin Messenger">
+            <i class="fab fa-facebook-messenger"></i>
+        </a>
+        
+        <a href="tel:SĐT_CỦA_CÔ" class="contact-btn btn-phone" title="Gọi điện cho cô Thảo">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+    </div>
+</body>
+</html>

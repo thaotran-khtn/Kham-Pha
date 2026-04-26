@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kho Học Liệu | Không Gian KHTN 8</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Cơ bản & Cuộn mượt */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; background-color: #f8fafc; color: #334155; }
+
+        /* Thanh điều hướng */
+        nav { background-color: #ffffff; display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .nav-brand { font-size: 1.4rem; font-weight: 700; color: #1e3a8a; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .nav-links { display: flex; gap: 25px; }
+        .nav-links a { text-decoration: none; color: #475569; font-weight: 600; font-size: 1rem; transition: color 0.2s ease, border-bottom 0.2s ease; padding-bottom: 5px; border-bottom: 2px solid transparent; }
+        .nav-links a:hover, .nav-links a.active { color: #2563eb; border-bottom: 2px solid #2563eb; }
+
+        /* Header trang Thư Viện */
+        .page-header { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: #ffffff; padding: 4rem 5%; text-align: center; }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .page-header p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+
+        /* Khu vực Thư Viện Bài Giảng */
+        .library-section { padding: 4rem 5%; background-color: #f8fafc; min-height: 60vh; }
+        .lesson-filter { display: flex; justify-content: center; gap: 10px; margin-bottom: 3rem; flex-wrap: wrap; }
+        .filter-btn { background-color: #ffffff; border: 1px solid #cbd5e1; padding: 8px 20px; border-radius: 25px; cursor: pointer; font-weight: 600; color: #475569; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .filter-btn.active, .filter-btn:hover { background-color: #2563eb; color: #ffffff; border-color: #2563eb; }
+
+        .lesson-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1100px; margin: 0 auto; }
+        .lesson-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; display: flex; flex-direction: column; transition: all 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .lesson-card:hover { transform: translateY(-5px); box-shadow: 0 12px 20px rgba(37, 99, 235, 0.1); border-color: #93c5fd; }
+        
+        .lesson-tag { font-size: 0.75rem; text-transform: uppercase; font-weight: 700; padding: 4px 10px; border-radius: 4px; display: inline-block; margin-bottom: 1rem; align-self: flex-start; }
+        .tag-co-hoc { background-color: #dbeafe; color: #1e40af; }
+        .tag-nhiet-hoc { background-color: #fee2e2; color: #991b1b; }
+        
+        .lesson-card h3 { font-size: 1.2rem; color: #0f172a; margin-bottom: 0.8rem; line-height: 1.4; }
+        .lesson-desc { font-size: 0.95rem; color: #475569; margin-bottom: 1.5rem; flex-grow: 1; text-align: justify; }
+
+        .lesson-actions { display: flex; gap: 15px; border-top: 1px solid #f1f5f9; padding-top: 1.2rem; }
+        .btn-view { flex: 1; text-align: center; background-color: #eff6ff; color: #2563eb; padding: 8px 0; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: background 0.2s; }
+        .btn-view:hover { background-color: #bfdbfe; }
+        .btn-download { flex: 1; text-align: center; border: 1px solid #cbd5e1; color: #475569; padding: 8px 0; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: background 0.2s; }
+        .btn-download:hover { background-color: #f1f5f9; color: #0f172a; }
+
+        /* Chân trang (Đồng bộ) */
+        footer { background-color: #0f172a; color: #cbd5e1; padding: 3rem 5% 1.5rem 5%; margin-top: 4rem; font-size: 0.95rem; text-align: left; }
+        .footer-content { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; }
+        .footer-section { flex: 1; min-width: 250px; }
+        .footer-section h3 { color: #60a5fa; margin-bottom: 1.2rem; font-size: 1.2rem; border-bottom: 1px solid #334155; padding-bottom: 0.5rem; display: inline-block; }
+        .footer-section p { margin-bottom: 0.8rem; line-height: 1.6; }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 0.8rem; }
+        .footer-section ul li a { color: #cbd5e1; text-decoration: none; transition: color 0.2s; }
+        .footer-section ul li a:hover { color: #60a5fa; }
+        .footer-bottom { text-align: center; padding-top: 1.5rem; margin-top: 2rem; border-top: 1px solid #1e293b; font-size: 0.85rem; color: #64748b; }
+
+        /* Nút liên hệ nổi (Đồng bộ) */
+        .floating-contact { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 9999; }
+        .contact-btn { width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: #ffffff; font-size: 24px; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: transform 0.3s; }
+        .contact-btn:hover { transform: scale(1.15); color: #ffffff; }
+        .btn-zalo { background-color: #25d366; }
+        .btn-messenger { background-color: #006bff; }
+        .btn-phone { background-color: #004b87; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="nav-brand">KHTN 8 <span style="font-weight: 400; font-size: 1.1rem;">| Cô Trần Thị Thảo</span></a>
+      <div class="nav-links">
+         <a href="index.html">Trang Chủ</a>
+         <a href="index.html#tin-tuc">Tin Nổi Bật</a>
+         <a href="bai-giang.html">Kho Bài Giảng</a>
+         <a href="truyen-tranh.html">Góc Truyện Tranh</a>
+      </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>Kho Học Liệu Số KHTN 8</h1>
+        <p>Tài liệu giảng dạy, phiếu bài tập và slide được biên soạn theo phương pháp trực quan, phát triển năng lực.</p>
+    </header>
+
+    <section class="library-section">
+        <div class="lesson-filter">
+            <button class="filter-btn active">Tất cả bài học</button>
+            <button class="filter-btn">Chủ đề: Cơ học</button>
+            <button class="filter-btn">Chủ đề: Nhiệt học</button>
+            <button class="filter-btn">SKKN & Chuyên đề</button>
+        </div>
+
+        <div class="lesson-grid">
+            <div class="lesson-card">
+                <span class="lesson-tag tag-co-hoc">Cơ học</span>
+                <h3>Bài 18: Đòn bẩy và ứng dụng trong đời sống</h3>
+                <p class="lesson-desc">Khám phá nguyên lý hoạt động của 3 loại đòn bẩy. Đi kèm tài liệu phân tích điểm tựa, lực tác dụng và truyện tranh Doraemon minh họa.</p>
+                <div class="lesson-actions">
+                    <a href="#" class="btn-view"><i class="fas fa-play-circle"></i> Slide Bài Giảng</a>
+                    <a href="#" class="btn-download"><i class="fas fa-file-pdf"></i> Tải Phiếu BT</a>
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <span class="lesson-tag tag-co-hoc">Cơ học</span>
+                <h3>Bài 15: Khối lượng riêng và phép đo</h3>
+                <p class="lesson-desc">Hướng dẫn chi tiết cách xác định khối lượng riêng của các vật có hình dạng khác nhau, kèm bảng số liệu chuẩn thực hành.</p>
+                <div class="lesson-actions">
+                    <a href="#" class="btn-view"><i class="fas fa-play-circle"></i> Slide Bài Giảng</a>
+                    <a href="#" class="btn-download"><i class="fas fa-file-pdf"></i> Tải Phiếu BT</a>
+                </div>
+            </div>
+
+            <div class="lesson-card">
+                <span class="lesson-tag tag-co-hoc">Cơ học</span>
+                <h3>Bài 16: Áp suất chất lỏng - Bình thông nhau</h3>
+                <p class="lesson-desc">Kết hợp video thí nghiệm mô phỏng sự phụ thuộc của áp suất vào độ sâu của chất lỏng. Infographic do lớp 8A3 thiết kế.</p>
+                <div class="lesson-actions">
+                    <a href="#" class="btn-view"><i class="fas fa-play-circle"></i> Xem Video</a>
+                    <a href="#" class="btn-download"><i class="fas fa-file-pdf"></i> Tải Sơ đồ</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Thông tin phụ trách</h3>
+                <p><strong>Giáo viên:</strong> Trần Thị Thảo</p>
+                <p><strong>Chuyên môn:</strong> Cử nhân Sư phạm Vật lí</p>
+                <p><strong>Đơn vị công tác:</strong> Trường THCS Long Hậu</p>
+            </div>
+            <div class="footer-section">
+                <h3>Về dự án</h3>
+                <p>Sản phẩm thuộc sáng kiến: <em>"Ứng dụng AI trong thiết kế và sử dụng học liệu số môn KHTN 8 (phân môn Vật lí) thông qua hoạt động đồng kiến tạo..."</em></p>
+            </div>
+            <div class="footer-section">
+                <h3>Liên kết nhanh</h3>
+                <ul>
+                    <li><a href="index.html">Trang Chủ</a></li>
+                    <li><a href="bai-giang.html">Kho Bài Giảng Số</a></li>
+                    <li><a href="#">Góc Truyện Tranh</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 | Hệ thống học liệu số KHTN 8 - Cô Trần Thị Thảo.</p>
+        </div>
+    </footer>
+
+    <div class="floating-contact">
+        <a href="https://zalo.me/" target="_blank" class="contact-btn btn-zalo" title="Zalo"><i class="fas fa-comment-dots"></i></a>
+        <a href="https://m.me/" target="_blank" class="contact-btn btn-messenger" title="Messenger"><i class="fab fa-facebook-messenger"></i></a>
+        <a href="tel:" class="contact-btn btn-phone" title="Gọi điện"><i class="fas fa-phone-alt"></i></a>
+    </div>
+
+</body>
+</html>
