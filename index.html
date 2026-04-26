@@ -381,10 +381,16 @@
         padding: 10px;
     }
     .nav-links {
-        flex-wrap: wrap;
+        flex-wrap: nowrap !important; /* Lệnh ép không được xuống dòng */
         justify-content: center;
-        gap: 15px !important;
+        gap: 8px !important; /* Thu hẹp khoảng cách giữa các chữ */
         margin-top: 15px;
+        overflow-x: auto; /* Cho phép vuốt ngang nếu màn hình điện thoại quá nhỏ */
+    }
+    
+    .nav-links a {
+        font-size: 13px; /* Thu nhỏ cỡ chữ lại một chút để vừa 1 hàng */
+        white-space: nowrap; /* Bắt buộc từng cụm từ (vd: Kho Bài Giảng) không bị gãy làm đôi */
     }
 }
     </style>
